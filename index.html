@@ -149,7 +149,7 @@
     transition: all 0.4s ease;
 }
 
-/* التبديل لليلي تلقائياً */
+
 .dark-mode .java-card {
     background: var(--card-dark);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -158,10 +158,10 @@
 .card-header {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* عشان الأيقونة جنب العنوان */
+    justify-content: flex-start; 
     gap: 15px;
     margin-bottom: 20px;
-    color: #f89820; /* لون جافا */
+    color: #f89820; 
 }
 
 .card-header h3 {
@@ -183,7 +183,7 @@
     margin-bottom: 12px;
 }
 
-/* تنسيق نصيحة منونة المتناسق */
+
 .tip-box {
     background: rgba(46, 204, 113, 0.1);
     border-right: 4px solid var(--accent-green);
@@ -198,7 +198,7 @@
 .tip-text {
     font-style: italic;
     font-size: 0.9rem;
-    color: inherit; /* بياخد لون النص بتاع الـ body */
+    color: inherit;
 }
 
 .tip-icon {
@@ -224,38 +224,101 @@
 
 .preview-text {
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* ده اللي بيخليهم سطرين بس */
+    -webkit-line-clamp: 2; 
     -webkit-box-orient: vertical;  
     overflow: hidden;
     line-height: 1.6;
 }
 
 summary {
-    list-style: none; /* بيشيل السهم الأسود الصغير */
+    list-style: none; 
     outline: none;
 }
 
+      
+.main-header {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row-reverse;
+}
+
+.profile-img-container {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #f89820;
+    overflow: hidden;
+}
+
+.profile-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%; /* عشان وشك يبان */
+}
+
+.profile-name {
+    color: #f89820;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.channel-link {
+    background: #ff0000;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    font-size: 0.65rem;
+    text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+    .main-header {
+        position: relative; 
+        right: auto;
+        top: auto;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .logo-group {
+        flex-direction: column; 
+        text-align: center;
+    }
+}
+        
     </style>
 </head>
 <body>
 
-<header style="position: absolute; right: 20px; top: 20px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 1000;">
-    
-    <!-- قسم اللوجو والاسم -->
-    <div style="display: flex; align-items: center; gap: 8px; flex-direction: row-reverse;">
-        <div style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #f89820; overflow: hidden;">
-            <!-- object-position: top عشان ينزل الصورة ويبين وشك -->
-            <img src="logo.jpeg" alt="Manoona" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+<header class="main-header">
+    <div class="logo-group">
+        <div class="profile-img-container">
+            <img src="logo.jpeg" alt="Manoona">
         </div>
-        <span style="color: #f89820; font-weight: bold; font-size: 0.9rem; font-family: sans-serif;">Manoona QA</span>
+        <span class="profile-name">Manoona QA</span>
     </div>
 
-    <!-- زرار القناة صغير جداً وتحت اللوجو -->
-    <a href="https://youtube.com/@manoonaqa?si=2IhmwAE-5kD_iIhW" target="_blank" style="text-decoration: none;">
-        <div style="background: #ff0000; color: white; padding: 4px 10px; border-radius: 15px; display: flex; align-items: center; gap: 5px; font-weight: bold; font-size: 0.7rem;">
-            <i class="fab fa-youtube"></i>
-            <span>Channel</span>
-        </div>
+    <a href="https://youtube.com/@manoonaqa" target="_blank" class="channel-link">
+        <i class="fab fa-youtube"></i>
+        <span>Channel</span>
     </a>
 </header>
 
@@ -273,7 +336,7 @@ summary {
         <div class="qa-grid">
             
            <!-- مربع HTML - الهيكل العظمي -->
-<!-- مربع HTML - الهيكل العظمي (تنسيق احترافي واضح) -->
+
 <div class="glass-card" style="animation-delay: 0.1s;">
     <div class="icon-box"><i class="fab fa-html5"></i> HTML - الهيكل </div>
     
