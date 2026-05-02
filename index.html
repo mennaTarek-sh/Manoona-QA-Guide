@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manoona QA | الويب الشامل للأوتوميشن</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --bg-light: #f4f7f6;
+            --card-light: rgba(255, 255, 255, 0.8);
+            --text-light: #333;
+            --accent-green: #2ecc71;
+            
+            /* Dark Mode Variables */
+            --bg-dark: #0f172a;
+            --card-dark: rgba(30, 41, 59, 0.8);
+            --text-dark: #f1f5f9;
+        }
+
+         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.4s ease;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* Toggle Button */
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 1000;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #007bff, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* The Grid System */
+        .qa-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .glass-card {
+            background: var(--card-light);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .glass-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-green);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .qa-tip {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(46, 204, 113, 0.1);
+            border-right: 4px solid var(--accent-green);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card { animation: fadeIn 0.6s ease forwards; }
+
+       
+        /* التنسيق النهائي لمربع Java - متوافق تماماً مع الـ Dark Mode */
+.java-card {
+    background: var(--card-light);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s ease;
+}
+
+/* التبديل لليلي تلقائياً */
+.dark-mode .java-card {
+    background: var(--card-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* عشان الأيقونة جنب العنوان */
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #f89820; /* لون جافا */
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.card-content {
+    text-align: right;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.info-list li {
+    margin-bottom: 12px;
+}
+
+/* تنسيق نصيحة منونة المتناسق */
+.tip-box {
+    background: rgba(46, 204, 113, 0.1);
+    border-right: 4px solid var(--accent-green);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.tip-text {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: inherit; /* بياخد لون النص بتاع الـ body */
+}
+
+.tip-icon {
+    font-size: 1.5rem;
+    margin-left: 12px;
+}
+
+/* تنسيق معلومات الـ Locators و الـ Actions */
+.global-info {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+}
+
+.info-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+
+.preview-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* ده اللي بيخليهم سطرين بس */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    line-height: 1.6;
+}
+
+summary {
+    list-style: none; /* بيشيل السهم الأسود الصغير */
+    outline: none;
+}
+
+    </style>
+</head>
+<body>
+
+<header style="position: absolute; right: 20px; top: 20px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 1000;">
+    
+    <!-- قسم اللوجو والاسم -->
+    <div style="display: flex; align-items: center; gap: 8px; flex-direction: row-reverse;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #f89820; overflow: hidden;">
+            <!-- object-position: top عشان ينزل الصورة ويبين وشك -->
+            <img src="logo.jpeg" alt="Manoona" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+        </div>
+        <span style="color: #f89820; font-weight: bold; font-size: 0.9rem; font-family: sans-serif;">Manoona QA</span>
+    </div>
+
+    <!-- زرار القناة صغير جداً وتحت اللوجو -->
+    <a href="https://youtube.com/@manoonaqa?si=2IhmwAE-5kD_iIhW" target="_blank" style="text-decoration: none;">
+        <div style="background: #ff0000; color: white; padding: 4px 10px; border-radius: 15px; display: flex; align-items: center; gap: 5px; font-weight: bold; font-size: 0.7rem;">
+            <i class="fab fa-youtube"></i>
+            <span>Channel</span>
+        </div>
+    </a>
+</header>
+
+    <div class="theme-switch" onclick="toggleDarkMode()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </div>
+
+    <header>
+        <span class="badge">Professional QA Tool</span>
+        <h1>دليل الويب الشامل للـ QA Automation</h1>
+        <p>بناء المهارات من الهيكل إلى التفاعل 🍓</p>
+    </header>
+
+    <div class="container">
+        <div class="qa-grid">
+            
+           <!-- مربع HTML - الهيكل العظمي -->
+<!-- مربع HTML - الهيكل العظمي (تنسيق احترافي واضح) -->
+<div class="glass-card" style="animation-delay: 0.1s;">
+    <div class="icon-box"><i class="fab fa-html5"></i> HTML - الهيكل </div>
+    
+    <h3>أساسيات الـ Web للمهندسين</h3>
+
+    <!-- رابط الشرح بعد تعديل المسمى ليكون "شرح أساسيات HTML" -->
+    <div style="margin: 15px 0;">
+        <a href="https://drive.google.com/file/d/1Pkq-3XbbpiEy3lwIm0kd5nuZCoYRr6_x/view?usp=drive_link" 
+           target="_blank" 
+           class="drive-link" 
+           style="display: inline-flex; align-items: center; gap: 8px; color: #f89820; text-decoration: none; font-size: 0.95rem; font-weight: bold; background: rgba(248, 152, 32, 0.1); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(248, 152, 32, 0.3);">
+           <i class="fas fa-book-open"></i> 
+           شاهد شرح أساسيات الـ HTML كاملة
+        </a>
+    </div>
+
+    <p>
+        مش محتاج تكون محترف HTML، الأساسيات كفاية جداً عشان تعرف تتعامل مع الـ Structure. الـ <code>&lt;button&gt;</code> والـ <code>&lt;input&gt;</code> هما أهدافك اللي السكريبت بيدور عليها.
+    </p>
+
+    <div class="qa-tip">
+        <strong>نصيحة منونة:</strong> دايماً اطلب من الـ Developer يضيف <code>data-testid</code> عشان الـ Locators بتاعتك تبقى "حديد" ومبتتكسرش بسهولة.
+    </div>
+</div>
+  <!-- -------------------------------------------------------------------------------..-->
+            <div class="glass-card" style="animation-delay: 0.3s;">
+                <div class="icon-box"><i class="fab fa-css3-alt"></i> CSS - التنسيق </div>
+                <h3>تحديد العناصر بالذكاء البصري</h3>
+
+    <!-- رابط الشرح بعد تعديل المسمى ليكون "شرح أساسيات cSS" -->
+    <div style="margin: 15px 0;">
+        <a href="https://drive.google.com/file/d/1gZecQkpGpQfEla8oqMi2PpkRjEXf_j2S/view?usp=drive_link" 
+           target="_blank" 
+           class="drive-link" 
+           style="display: inline-flex; align-items: center; gap: 8px; color: #f89820; text-decoration: none; font-size: 0.95rem; font-weight: bold; background: rgba(248, 152, 32, 0.1); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(248, 152, 32, 0.3);">
+           <i class="fas fa-book-open"></i> 
+           شاهد شرح أساسيات الـ CSS كاملة
+        </a>
+    </div>
+                <p>إزاي تستخدم الـ CSS Selectors للوصول لعناصر مالهاش ID، وإزاي تفحص الـ Layout والـ Responsiveness.</p>
+                <div class="qa-tip">
+                    <strong>نصيحة منونة:</strong> اتعلم الـ <code>nth-child</code> والـ <code>sibling selectors</code>، دول المنقذين في الجداول المعقدة.
+                </div>
+            </div>
+  <!-- -------------------------------------------------------------------------------..-->
+
+            <div class="glass-card" style="animation-delay: 0.5s;">
+                <div class="icon-box"><i class="fab fa-js-square"></i> JavaScript </div>
+                <h3>التعامل مع الـ Dynamic Elements</h3>
+                <p>الجافا سكريبت هي اللي بتخلي الموقع "حي". هنا بنتعلم الـ Waits وإزاي نهندل الـ Pop-ups والـ AJAX requests.</p>
+                <div class="qa-tip">
+                    <strong>نصيحة منونة:</strong> الـ <code>Explicit Wait</code> هو صديقك الصدوق في الجافا سكريبت، بلاش تستخدم <code>Thread.sleep</code> أبداً!
+                </div>
+            </div>
+
+              <!-- -------------------------------------------------------------------------------..-->
+
+            <!-- مربع لغة Java للـ Automation -->
+<!-- مربع لغة Java - التنسيق النهائي (سطرين + More) -->
+<div class="glass-card">
+    <!-- 1. الجزء الظاهر دايماً (العنوان والسطرين) -->
+    <div class="card-header" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-bottom: 10px;">
+        <h3 style="color: #f89820; margin: 0;">Java for Selenium</h3>
+        <i class="fab fa-java" style="color: #f89820; font-size: 1.5rem;"></i>
+    </div>
+
+    <div style="margin: 15px 0;">
+        <a href="https://drive.google.com/file/d/126nsbAriyRcIAbc2B_DkgjcZ1zy7QGUo/view?usp=drive_link" 
+           target="_blank" 
+           class="drive-link" 
+           style="display: inline-flex; align-items: center; gap: 8px; color: #13a8da; text-decoration: none; font-size: 0.95rem; font-weight: bold; background: rgba(248, 152, 32, 0.1); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(248, 152, 32, 0.3);">
+           <i class="fas fa-book-open"></i> 
+           شاهد شرح أساسيات الـ JAVA كاملة
+        </a>
+    </div>
+    <p class="preview-text" style="margin-bottom: 5px;">
+        الجافا هي المحرك اللي بيخلي السكريبت يشتغل، وهي اللغة الأساسية لبناء الـ Automation Frameworks القوية. من غيرها مش هنقدر نتحكم في المتصفح بشكل كامل.
+    </p>
+
+    <!-- 2. الجزء المختفي (بيظهر لما تدوسي Show More) -->
+    <details>
+        <summary style="color: #f89820; cursor: pointer; font-weight: bold; margin-bottom: 10px;">Show More ...</summary>
+        
+        <div class="card-content">
+            <ul class="info-list">
+                <li><strong>Variables:</strong> بنخزن فيها البيانات زي الـ URL أو الـ Selectors.</li>
+                <li><strong>Methods:</strong> هي الأوامر اللي بنكتبها عشان نفذ فعل معين (زي `driver.findElement`).</li>
+                <li><strong>IF Statements:</strong> بنستخدمها عشان نتأكد إن النتيجة صح (Validation).</li>
+            </ul>
+            
+            <div class="tip-box">
+                <span class="tip-icon">🍓</span>
+                <div class="tip-text">
+                    <strong>نصيحة منونة:</strong> في الـ Automation مش محتاج تتعلم جافا كلها، ركز على الـ OOP والأساسيات وهتلاقي الدنيا بقت سهلة جداً!
+                </div>
+            </div>
+
+            <div class="global-info">
+                <div class="info-item">
+                    <h4>🔍 ليه بنستخدم الـ Locators؟</h4>
+                    <p>لأن الـ Selenium أعمى، الـ Locators هي "العين" اللي بتخليه يشوف العناصر.</p>
+                </div>
+                <div class="info-item">
+                    <h4>⚡ أهمية الـ Actions</h4>
+                    <p>دي اللي بتحول السكريبت لـ "مستخدم حقيقي" بيضغط ويكتب.</p>
+                </div>
+            </div>
+        </div>
+    </details>
+</div>
+
+  <!-- -------------------------------------------------------------------------------..-->
+
+        </div>
+    </div>
+
+    <footer>
+        تم التصميم بكل حب بواسطة <span style="color: var(--primary-color);">ManoonaQA</span> &copy; 2026
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+        }
+    </script>
+</body>
+</html>
